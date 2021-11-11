@@ -52,7 +52,6 @@ const CharList = (props) => {
       if (item.thumbnail.includes('image_not_available')) {
         styleImg = { objectFit: 'contain' }
       }
-
       return (
         // <CharItem  />
         <li
