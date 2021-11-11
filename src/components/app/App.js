@@ -1,10 +1,12 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 import AppHeader from '../appHeader/AppHeader'
 import RandomChar from '../randomChar/RandomChar'
 import CharList from '../charList/CharList'
 import CharInfo from '../charInfo/CharInfo'
 import ErrorBoundary from '../errorBoundary/ErrorBoundary'
 import decoration from '../../resources/img/vision.png'
+import AppBanner from '../appBanner/AppBanner'
+import ComicsList from '../comicsList/ComicsList'
 import { useState } from 'react'
 
 const App = () => {
@@ -14,11 +16,10 @@ const App = () => {
     setSelectedChar(id)
   }
 
-
-    return (
-      <div className='app'>
-        <AppHeader />
-        <main>
+  return (
+    <div className='app'>
+      <AppHeader />
+      {/* <main>
           <ErrorBoundary>
             <RandomChar />
           </ErrorBoundary>
@@ -31,16 +32,17 @@ const App = () => {
             </ErrorBoundary>
           </div>
           <img className='bg-decoration' src={decoration} alt='vision' />
-        </main>
-      </div>
-    )
+        </main> */}
+      <main>
+        <AppBanner />
+        <ComicsList />
+      </main>
+    </div>
+  )
 }
 
 App.propTypes = {
-  onCharSelected: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.isRequired,
-  ])
+  onCharSelected: PropTypes.oneOfType([PropTypes.func, PropTypes.isRequired]),
 }
 
 export default App
