@@ -1,4 +1,4 @@
-@import '../../style/variables.scss';
+@import '../style/variables.scss';
 
 .app {
     &__header {
@@ -23,6 +23,9 @@
             li {
                 margin: 0 8px;
                 a:hover {
+                    color: $main-color;
+                }
+                a.active{
                     color: $main-color;
                 }
             }

@@ -1,16 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './components/app/App'
-// import MarvelService from './services/MarvelService';
+import { BrowserRouter } from 'react-router-dom'
 import './style/style.scss'
-
-// const marvelService = new MarvelService()
-// marvelService.getAllItems().then((res) => res.data.results.forEach((item) => console.log(item.name)))
-// marvelService.getItem(1011052).then((res) => console.log(res))
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 )

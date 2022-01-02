@@ -1,4 +1,5 @@
 import './comicsList.scss'
+import { Link } from 'react-router-dom'
 import useMarvelService from '../../services/MarvelService'
 import Spinner from '../spinner/Spinner'
 import ErrorMessage from '../errorMessage/ErrorMessage'
@@ -39,12 +40,10 @@ const ComicsList = (props) => {
       if (item.thumbnail.includes('image_not_available')) {
         styleImg = { objectFit: 'contain' }
       }
-
-
-      console.log(idx);
+      // console.log(idx);
       return (
-        <li key={item.title} className='comics__item'>
-          <a href={item.pageCount}>
+        <li key={idx} className='comics__item'>
+          <Link to={`/comics/${item.id}`}>
             <img
               style={styleImg}
               src={item.thumbnail}
@@ -53,7 +52,7 @@ const ComicsList = (props) => {
             />
             <div className='comics__item-name'>{item.title}</div>
             <div className='comics__item-price'>{item.price}</div>
-          </a>
+          </Link>
         </li>
       )
     })

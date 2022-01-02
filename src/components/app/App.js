@@ -1,48 +1,30 @@
-import PropTypes from 'prop-types'
-import AppHeader from '../appHeader/AppHeader'
-import RandomChar from '../randomChar/RandomChar'
-import CharList from '../charList/CharList'
-import CharInfo from '../charInfo/CharInfo'
-import ErrorBoundary from '../errorBoundary/ErrorBoundary'
-import decoration from '../../resources/img/vision.png'
-import AppBanner from '../appBanner/AppBanner'
-import ComicsList from '../comicsList/ComicsList'
-import { useState } from 'react'
+import { lazy, Suspense } from 'react'
+import { Route, Routes } from 'react-router-dom'
+
+import Spinner from '../spinner/Spinner'
+const Page404 = lazy(() => import('../../pages/404'))
+const Home = lazy(() => import('../../pages/Home'))
+const Comics = lazy(() => import('../../pages/Comics'))
+const Layout = lazy(() => import('../../pages/Layout'))
+const SingleComic = lazy(() => import('../../pages/SingleComic'))
 
 const App = () => {
-  const [selectedChar, setSelectedChar] = useState(null)
-
-  const onCharSelected = (id) => {
-    setSelectedChar(id)
-  }
-
   return (
     <div className='app'>
-      <AppHeader />
-      {/* <main>
-          <ErrorBoundary>
-            <RandomChar />
-          </ErrorBoundary>
-          <div className='char__content'>
-            <ErrorBoundary>
-              <CharList onCharSelected={onCharSelected} />
-            </ErrorBoundary>
-            <ErrorBoundary>
-              <CharInfo charId={selectedChar} />
-            </ErrorBoundary>
-          </div>
-          <img className='bg-decoration' src={decoration} alt='vision' />
-        </main> */}
-      <main>
-        <AppBanner />
-        <ComicsList />
-      </main>
+      <Suspense fallback={<Spinner />}>
+        <Routes>
+          <Route path='/' element={<Layout />}>
+            <Route index path='/' element={<Home />} />
+            <Route path='/comics' element={<Comics />} />
+            <Route path='/comics/:comicId' element={<SingleComic />} />
+            <Route path='*' element={<Page404 />} />
+          </Route>
+        </Routes>
+      </Suspense>
     </div>
   )
 }
 
-App.propTypes = {
-  onCharSelected: PropTypes.oneOfType([PropTypes.func, PropTypes.isRequired]),
-}
-
 export default App
+
+// https://youtu.be/ApftxkYnXdo
