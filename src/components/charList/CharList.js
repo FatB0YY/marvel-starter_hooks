@@ -32,7 +32,7 @@ const CharList = (props) => {
     setCharArray((charArray) => [...charArray, ...newCharArray])
     setNewItemsLoading((newItemsLoading) => false)
     setOffset((item) => item + 9)
-    setCharEnded((charEnded) => false)
+    setCharEnded((charEnded) => ended)
   }
 
   const itemRefs = useRef([])
